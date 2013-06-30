@@ -1,13 +1,27 @@
-=@test
-%br
-%table.report-table
+=stylesheet_link_tag "csp_report/csp_report.css"
+
+%table.csp-report.report-table
+  %tr.csp-report.report-row
+    %th.csp-report.report-header
+      ID
+    %th.csp-report.report-header
+      Document URI
+    %th.csp-report.report-header
+      Referrer
+    %th.csp-report.report-header
+      Server Policy
+    %th.csp-report.report-header
+      Violated Directive
+    %th.csp-report.report-header
+      Blocked URI
+    %th.csp-report.report-header
+      Reported At
   - @reports.each do |report|
-    %tr
-      %td=report.id
-      %td=report.document_uri
-      %td=report.referrer
-      %td=report.original_policy
-      %td=report.violated_directive
-      %td=report.blocked_uri
-      %td=report.created_at
-      %td=report.updated_at
+    %tr.csp-report.report-row
+      %td.csp-report.report-cell=report.id
+      %td.csp-report.report-cell=report.document_uri
+      %td.csp-report.report-cell=report.referrer
+      %td.csp-report.report-cell=report.original_policy
+      %td.csp-report.report-cell=report.violated_directive
+      %td.csp-report.report-cell=report.blocked_uri
+      %td.csp-report.report-cell=report.created_at
