@@ -38,19 +38,22 @@ Install
 =======
 
 1. In your *Gemfile*, add the following
-```ruby
+
+```
 	gem csp_report
 ```
 
 Don't forget to run `bundle install` afterwards
 
 2. Retrieve the db migration files from the gem and install them
+
 ```shell
 	rake csp_report:install:migrations
 	rake db:migrate
 ```
 
 3. In your *config/routes.rb*, you need to import the csp routes, like so
+
 ```ruby
 	mount CspReport::Engine, at: 'csp'
 ```
@@ -62,6 +65,7 @@ routes in your application
 4. You need to configure a CSP on your server response, with the *report_uri*
 parameters pointing to the configured REST resource above. Following the setup
 above, one solution is to find this in your application_controller.rb file:
+
 ```ruby
 	class ApplicationController
 		protect_from_forgery
@@ -82,6 +86,7 @@ Trying it out
 
 With the policy set as an example above (*script 'self'*), inline javascript is
 not authorized. Just put some
+
 ```html
 	<script>
 		alert('test')
