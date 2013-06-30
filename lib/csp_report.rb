@@ -1,6 +1,5 @@
 require "csp_report/engine"
-require "haml-rails"
-require "sass-rails"
+require "haml"
 
 module CspReport
 end
