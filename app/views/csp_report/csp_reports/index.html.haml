@@ -1,0 +1,13 @@
+=@test
+%br
+%table.report-table
+  - @reports.each do |report|
+    %tr
+      %td=report.id
+      %td=report.document_uri
+      %td=report.referrer
+      %td=report.original_policy
+      %td=report.violated_directive
+      %td=report.blocked_uri
+      %td=report.created_at
+      %td=report.updated_at
