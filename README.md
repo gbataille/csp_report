@@ -38,28 +38,22 @@ Install
 =======
 
 1. In your *Gemfile*, add the following
-
 ```
 	gem csp_report
 ```
-
 Don't forget to run `bundle install` afterwards
 
-2. Run the generator
-
+1. Run the generator
 ```shell
 	rails generate csp_report:install
 ```
-
-It retrieve the db migration files from the gem and install them
-It mounts the gem routes in the application
-
+It retrieve the db migration files from the gem and install them  
+It mounts the gem routes in the application  
 *Don't forget to run the `rake db:migrate` command*
 
-3. You need to configure a CSP on your server response, with the *report_uri*
+1. You need to configure a CSP on your server response, with the *report_uri*
 parameters pointing to the configured REST resource above. Following the setup
 above, one solution is to find this in your application_controller.rb file:
-
 ```ruby
 	class ApplicationController
 		protect_from_forgery
@@ -72,7 +66,7 @@ above, one solution is to find this in your application_controller.rb file:
 	end
 ```
 
-4. You're all set. Accessing *application_root_url*/csp/csp_reports will display
+1. You're all set. Accessing *application_root_url*/csp/csp_reports will display
 a list of all the CSP violation that were reported.
 
 Trying it out
