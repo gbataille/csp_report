@@ -23,4 +23,9 @@ class CspReport::CspReportsController < ApplicationController
     report.save!
     render status: 200, nothing: true
   end
+
+  def destroy
+    CspReport::CspReport.destroy(params[:id])
+    redirect_to csp_reports_path
+  end
 end

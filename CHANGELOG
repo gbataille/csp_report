@@ -1,7 +1,10 @@
-* From 0.0.2
-	- add generator csp_report:install to retrieve the migration files and add
+* From 0.2.0
+	- Adds ability to delete a violation from the reported ones
+
+* From 0.1.2
+	- Adds generator csp_report:install to retrieve the migration files and add
 	the gem routes
 
-* From 0.0.1
+* From 0.1.1
 	- Using haml rather than haml-rails to render the gem views without changing
 	the app details

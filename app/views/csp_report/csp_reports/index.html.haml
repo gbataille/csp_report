@@ -16,6 +16,8 @@
       Blocked URI
     %th.csp-report.report-header
       Reported At
+    %th.csp-report.report-header
+      Actions
   - @reports.each do |report|
     %tr.csp-report.report-row
       %td.csp-report.report-cell=report.id
@@ -25,3 +27,5 @@
       %td.csp-report.report-cell=report.violated_directive
       %td.csp-report.report-cell=report.blocked_uri
       %td.csp-report.report-cell=report.created_at
+      %td.csp-report.report-cell
+        =link_to('Delete violation', csp_report_path(report.id), method: 'delete')
