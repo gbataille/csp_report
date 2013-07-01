@@ -45,24 +45,18 @@ Install
 
 Don't forget to run `bundle install` afterwards
 
-2. Retrieve the db migration files from the gem and install them
+2. Run the generator
 
 ```shell
-	rake csp_report:install:migrations
-	rake db:migrate
+	rails generate csp_report:install
 ```
 
-3. In your *config/routes.rb*, you need to import the csp routes, like so
+It retrieve the db migration files from the gem and install them
+It mounts the gem routes in the application
 
-```ruby
-	mount CspReport::Engine, at: 'csp'
-```
+*Don't forget to run the `rake db:migrate` command*
 
-where the *at* parameter acts as a url encapsulation for the gem routes. For
-example, with the above lines, you would create a */csp/csp_reports* set of
-routes in your application
-
-4. You need to configure a CSP on your server response, with the *report_uri*
+3. You need to configure a CSP on your server response, with the *report_uri*
 parameters pointing to the configured REST resource above. Following the setup
 above, one solution is to find this in your application_controller.rb file:
 
@@ -78,7 +72,7 @@ above, one solution is to find this in your application_controller.rb file:
 	end
 ```
 
-5. You're all set. Accessing *application_root_url*/csp/csp_reports will display
+4. You're all set. Accessing *application_root_url*/csp/csp_reports will display
 a list of all the CSP violation that were reported.
 
 Trying it out
