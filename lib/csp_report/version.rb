@@ -1,3 +1,4 @@
 module CspReport
-  VERSION = "0.1.1".freeze
+  #TODO - gbataille: Permanent todo to bump the version for new releases
+  VERSION = "0.1.2".freeze
 end
