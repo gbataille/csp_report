@@ -1,4 +1,4 @@
-Require 'spec_helper'
+require 'spec_helper'
 
 describe CspReport::CspReportsController do
   before(:each) do
