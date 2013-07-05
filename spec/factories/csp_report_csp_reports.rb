@@ -1,11 +1,17 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
-  factory :csp_report_csp_report, :class => 'CspReport' do
-    document_uri "MyString"
-    referrer "MyString"
-    blocked_uri "MyString"
-    violated_directive "MyString"
-    original_policy "MyString"
+  factory :local_inline, :class => 'CspReport::CspReport' do
+    document_uri "http://localhost:3000"
+    referrer ""
+    blocked_uri ""
+    violated_directive "script-src 'self'"
+    original_policy "script-src 'self'; report-uri /csp/csp_reports"
+  end
+
+  factory :local_home_index_inline, :class => 'CspReport::CspReport' do
+    document_uri "http://localhost:3000/home/index"
+    referrer ""
+    blocked_uri ""
+    violated_directive "script-src 'self'"
+    original_policy "script-src 'self'; report-uri /csp/csp_reports"
   end
 end
