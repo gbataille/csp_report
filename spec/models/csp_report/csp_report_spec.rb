@@ -11,7 +11,6 @@ describe CspReport::CspReport do
     }
 
     @unsaved_report_wout_document_uri = {
-      'document_uri' => "",
       'referrer' => "",
       'blocked_uri' => "",
       'violated_directive' => "script-src 'self'",
@@ -22,7 +21,6 @@ describe CspReport::CspReport do
       'document_uri' => "http://localhost:3000/home/index",
       'referrer' => "",
       'blocked_uri' => "",
-      'violated_directive' => "",
       'original_policy' => "script-src 'self'; report_uri /csp/csp_reports"
     }
 
@@ -31,7 +29,6 @@ describe CspReport::CspReport do
       'referrer' => "",
       'blocked_uri' => "",
       'violated_directive' => "script-src 'self'",
-      'original_policy' => ""
     }
 
   end
@@ -68,23 +65,35 @@ describe CspReport::CspReport do
 
     it "should fail to save to the db when the document_uri is missing" do
       report = CspReport::CspReport.new(@unsaved_report_wout_document_uri)
-      expect {
-        report.save!
-      }.to_not change(CspReport::CspReport, :count)
+      # TODO: gbataille - find an assert statement to test the failure.
+      # this works though
+      begin
+        report.save
+      rescue
+      end
+      assert_equal 0, CspReport::CspReport.count
     end
 
     it "should fail to save to the db when the violated_directive is missing" do
       report = CspReport::CspReport.new(@unsaved_report_wout_violated_directive)
-      expect {
-        report.save!
-      }.to_not change(CspReport::CspReport, :count)
+      # TODO: gbataille - find an assert statement to test the failure.
+      # this works though
+      begin
+        report.save
+      rescue
+      end
+      assert_equal 0, CspReport::CspReport.count
     end
 
     it "should fail to save to the db when the original_policy is missing" do
       report = CspReport::CspReport.new(@unsaved_report_wout_original_policy)
-      expect {
-        report.save!
-      }.to_not change(CspReport::CspReport, :count)
+      # TODO: gbataille - find an assert statement to test the failure.
+      # this works though
+      begin
+        report.save
+      rescue
+      end
+      assert_equal 0, CspReport::CspReport.count
     end
   end
 end
