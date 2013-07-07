@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130705054040) do
+ActiveRecord::Schema.define(version: 20130630091108) do
 
   create_table "csp_report_csp_reports", force: true do |t|
-    t.string   "document_uri"
+    t.string   "document_uri",       null: false
     t.string   "referrer"
     t.string   "blocked_uri"
-    t.string   "violated_directive"
-    t.string   "original_policy"
+    t.string   "violated_directive", null: false
+    t.string   "original_policy",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
