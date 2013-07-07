@@ -5,9 +5,7 @@ describe CspReport::CspReportsController do
     @local_inline = FactoryGirl.create(:local_inline)
     @local_home_index_inline = FactoryGirl.create(:local_home_index_inline)
 
-    @reports = []
-    @reports.push @local_inline
-    @reports.push @local_home_index_inline
+    @reports = CspReport::CspReport.all
   end
 
   describe "destroy" do
@@ -18,6 +16,7 @@ describe CspReport::CspReportsController do
 
       assert_response(:redirect)
       assert_redirected_to(controller: 'csp_report/csp_reports', action: 'index')
+      assert_nil CspReport::CspReport.find_by_id @local_inline.id
     end
   end
 
