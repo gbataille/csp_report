@@ -41,17 +41,17 @@ describe CspReport::CspReport do
 
     it "should fail to create a report when the document_uri is missing" do
       report = CspReport::CspReport.new(@unsaved_report_wout_document_uri)
-      assert_nil report
+      report.should_not be_valid
     end
 
     it "should fail to create a report when the violated_directive is missing" do
       report = CspReport::CspReport.new(@unsaved_report_wout_violated_directive)
-      assert_nil report
+      report.should_not be_valid
     end
 
     it "should fail to create a report when the original_policy is missing" do
       report = CspReport::CspReport.new(@unsaved_report_wout_original_policy)
-      assert_nil report
+      report.should_not be_valid
     end
   end
 
