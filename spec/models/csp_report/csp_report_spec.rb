@@ -65,34 +65,25 @@ describe CspReport::CspReport do
 
     it "should fail to save to the db when the document_uri is missing" do
       report = CspReport::CspReport.new(@unsaved_report_wout_document_uri)
-      # TODO: gbataille - find an assert statement to test the failure.
-      # this works though
-      begin
-        report.save
-      rescue
-      end
+      expect {
+        report.save!
+      }.to raise_error
       assert_equal 0, CspReport::CspReport.count
     end
 
     it "should fail to save to the db when the violated_directive is missing" do
       report = CspReport::CspReport.new(@unsaved_report_wout_violated_directive)
-      # TODO: gbataille - find an assert statement to test the failure.
-      # this works though
-      begin
-        report.save
-      rescue
-      end
+      expect {
+        report.save!
+      }.to raise_error
       assert_equal 0, CspReport::CspReport.count
     end
 
     it "should fail to save to the db when the original_policy is missing" do
       report = CspReport::CspReport.new(@unsaved_report_wout_original_policy)
-      # TODO: gbataille - find an assert statement to test the failure.
-      # this works though
-      begin
-        report.save
-      rescue
-      end
+      expect {
+        report.save!
+      }.to raise_error
       assert_equal 0, CspReport::CspReport.count
     end
   end
