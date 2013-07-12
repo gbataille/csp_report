@@ -4,9 +4,6 @@ class CspReport::CspReportsController < ApplicationController
   # The browser submitting the report will not have any CSRF token
   skip_before_filter :verify_authenticity_token
 
-  #Only provided as an API
-  respond_to :json
-
   def index
     @reports = CspReport::CspReport.all
   end
