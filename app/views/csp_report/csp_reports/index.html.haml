@@ -29,3 +29,7 @@
       %td.csp-report.report-cell=report.created_at
       %td.csp-report.report-cell
         =link_to('Delete violation', csp_report_path(report.id), method: 'delete')
+
+%p
+  =link_to "Delete All", csp_reports_destroy_all_path, 
+    confirm: "Are you sure you want to delete all the violation reports?"
