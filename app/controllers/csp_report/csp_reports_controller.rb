@@ -25,4 +25,9 @@ class CspReport::CspReportsController < ApplicationController
     CspReport::CspReport.destroy(params[:id])
     redirect_to csp_reports_path
   end
+
+  def destroy_all
+    CspReport::CspReport.delete_all
+    redirect_to csp_reports_path
+  end
 end
