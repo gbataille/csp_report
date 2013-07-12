@@ -53,4 +53,14 @@ describe CspReport::CspReportsController do
       assert_equal @unsaved_report['original-policy'], report.original_policy
     end
   end
+
+  describe "destroy all" do
+    it "should delete all the reports in store" do
+      delete :destroy_all, use_route: 'csp'
+
+      assert_empty CspReport::CspReport.all
+      assert_response :redirect
+      assert_redirected_to(controller: 'csp_report/csp_reports', action: 'index')
+    end
+  end
 end
