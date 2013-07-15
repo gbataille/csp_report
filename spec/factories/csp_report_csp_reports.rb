@@ -5,6 +5,7 @@ FactoryGirl.define do
     blocked_uri ""
     violated_directive "script-src 'self'"
     original_policy "script-src 'self'; report-uri /csp/csp_reports"
+    incoming_ip "127.0.0.1"
   end
 
   factory :local_home_index_inline, :class => 'CspReport::CspReport' do
@@ -13,5 +14,6 @@ FactoryGirl.define do
     blocked_uri ""
     violated_directive "script-src 'self'"
     original_policy "script-src 'self'; report-uri /csp/csp_reports"
+    incoming_ip "127.0.0.1"
   end
 end
