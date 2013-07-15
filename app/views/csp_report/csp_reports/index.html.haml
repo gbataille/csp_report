@@ -15,6 +15,8 @@
     %th.csp-report.report-header
       Blocked URI
     %th.csp-report.report-header
+      Incoming IP
+    %th.csp-report.report-header
       Reported At
     %th.csp-report.report-header
       Actions
@@ -26,6 +28,7 @@
       %td.csp-report.report-cell=report.original_policy
       %td.csp-report.report-cell=report.violated_directive
       %td.csp-report.report-cell=report.blocked_uri
+      %td.csp-report.report-cell=report.incoming_ip
       %td.csp-report.report-cell=report.created_at
       %td.csp-report.report-cell
         =link_to('Delete violation', csp_report_path(report.id), method: 'delete')
