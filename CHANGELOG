@@ -1,5 +1,9 @@
 * From 0.2.0
 	- Adds ability to delete a violation from the reported ones
+	- Adds ability to remove all the violations
+	- Adds the client IP information to the violation
+	- Adds a generator to prepare the ApplicationController to use the CSP
+	directive
 
 * From 0.1.2
 	- Adds generator csp_report:install to retrieve the migration files and add

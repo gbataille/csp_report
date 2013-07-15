@@ -10,6 +10,21 @@ This is a rough cut gem for the moment. It won't look like much in the report
 page. However, elements have a class so you can add some CSS style before I
  add some clean ones in the gem.
 
+I promise something cleaner when I'll get to v1 and when the W3C will have
+finalized the spec.
+
+Upgrade from 0.1.x
+==================
+
+CAREFUL, 0.2.0 comes with DB changes. I won't do that in a minor after we are at
+v1, but for the moment, I thought it would not trouble too many people.
+
+Make sure to run
++ rake csp\_report:install:migrations
++ rake db:migrate
+
+before continuing
+
 What is CSP
 ===========
 
@@ -33,6 +48,8 @@ Features
 ========
 
 * Provides a *csp_report* resource that stores the reported violations.
+* Displays the violation for analysis
+* Future: provide visualization aids on the report data
 
 Install
 =======
@@ -51,7 +68,15 @@ It retrieve the db migration files from the gem and install them
 It mounts the gem routes in the application  
 *Don't forget to run the `rake db:migrate` command*
 
-1. You need to configure a CSP on your server response, with the *report_uri*
+1. **EASY INSTALL**: use the helper generator to get your CSP directive skeleton.
+Execute
+```shell
+	rails generate csp_report:csp_declaration
+```
+You can then customize the directive in the ApplicationController.
+
+1. *(If you have not followed the previous step)* You need to configure a CSP on your 
+server response, with the *report_uri*
 parameters pointing to the configured REST resource above. Following the setup
 above, one solution is to find this in your application_controller.rb file:
 ```ruby
@@ -108,8 +133,7 @@ case you might gather stats and maybe warn them in one way or another).
 To come
 =======
 
-* Generators to ease the manual install process
-* Generators to help create the proper policies
+* Eased data mining
 
 License
 =======
