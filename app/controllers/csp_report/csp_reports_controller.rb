@@ -16,6 +16,7 @@ class CspReport::CspReportsController < ApplicationController
       r.violated_directive = param['violated-directive']
       r.original_policy = param['original-policy']
       r.blocked_uri = param['blocked-uri']
+      r.incoming_ip = request.remote_ip
     end
     report.save!
     render status: 200, nothing: true
