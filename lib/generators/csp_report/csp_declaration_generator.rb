@@ -4,21 +4,18 @@ module CspReport
     def setup_filter
       inject_into_file "app/controllers/application_controller.rb",
         after: "ApplicationController < ActionController::Base\n" do
-<<CONTENT
+<<-CONTENT
 
-before_filter :csp
+  before_filter :csp
 
-def csp
-  response.headers['Content-Security-Policy'] = 
-<<CSP
-  default *;
-  script-src 'self';
-  report-uri '/csp/csp_reports'
-CSP
+  def csp
+    policy =  "default *;"
+    policy << "script-src 'self';"
+    policy << "report-uri /csp/csp_reports"
+    response.headers['Content-Security-Policy'] = policy
+  end
 
-end
 CONTENT
-
         end
     end
   end
