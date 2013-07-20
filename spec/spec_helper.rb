@@ -3,6 +3,7 @@ ENV["RAILS_ENV"] ||= 'test'
 # Necessary to load the dummy application context and therefore be able to use
 # the engine in the integrated context of a rails app
 require File.expand_path("../dummy/config/environment", __FILE__)
+require 'rack/test'
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'factory_girl'
