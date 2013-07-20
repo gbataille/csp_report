@@ -1,0 +1,10 @@
+=form_for @report, {as: 'csp-report', url: '/csp/csp_reports'} do |r|
+  Document URI
+  =r.text_field :document_uri, name: 'csp-report[document-uri]', value: 'http://test'
+  Original Policy
+  =r.text_field :original_policy, name: 'csp-report[original-policy]', value: 'script-src "self"'
+  Violated Directive
+  =r.text_field :violated_directive, name: 'csp-report[violated-directive]', value: 'script-src "self"'
+  Incoming IP
+  =r.text_field :incoming_ip, value: '127.0.0.test'
+  =r.submit
