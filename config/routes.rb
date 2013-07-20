@@ -3,5 +3,7 @@ CspReport::Engine.routes.draw do
   # indeed the resources declaration add all the csp_reports/XXX routes to be 
   # the show XXX item action
   get '/csp_reports/destroy_all' #, controller: 'csp_reports#destroy_all'
-  resources :csp_reports
+
+  resources :csp_reports, except: [:create]
+  resources :csp_reports, only: [:create], constraints: { format: /(json|xml)/ }
 end
