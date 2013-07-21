@@ -16,10 +16,10 @@ module CspReport
 
       # If it's not the first run, the generator will ask to overwrite the
       # existing initializer
-      generate "csp_report:initializer_install" , "#{namespace}"
+      generate "csp_report:initializer_install" , "#{mount_point}"
       # If it is not the first run but the mount point was not change, nothing
       # happens
-      generate "csp_report:mount"               , "#{namespace}"
+      generate "csp_report:mount"               , "#{mount_point}"
       # If this is not the first run, only the delta is copied.
       generate "csp_report:migration"
 
