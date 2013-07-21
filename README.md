@@ -13,17 +13,8 @@ page. However, elements have a class so you can add some CSS style before I
 I promise something cleaner when I'll get to v1 and when the W3C will have
 finalized the spec.
 
-Upgrade from 0.1.x
-==================
-
-CAREFUL, 0.2.0 comes with DB changes. I won't do that in a minor after we are at
-v1, but for the moment, I thought it would not trouble too many people.
-
-Make sure to run
-+ rake csp\_report:install:migrations
-+ rake db:migrate
-
-before continuing
+**Careful**: If migrating from 0.1.x, please follow 
+[these instructions](#upgrade-from-01x)
 
 What is CSP
 ===========
@@ -60,15 +51,18 @@ Install
 ```
 Don't forget to run `bundle install` afterwards
 
-1. Run the generator
+1. Run the generator. The engine mount point is configurable. By default it will be 
+**/csp** but you can change that to your liking by passing a parameter to the
+install generator
 ```shell
-	rails generate csp_report:install
+	rails generate csp_report:install [mount_point_name]
 ```
-It retrieve the db migration files from the gem and install them  
-It mounts the gem routes in the application  
+It retrieve the db migration files from the gem and copy them in the application  
+It mounts the engine in the application (see routes.rb)  
 *Don't forget to run the `rake db:migrate` command*
 
 1. **EASY INSTALL**: use the helper generator to get your CSP directive skeleton.
+It will use the mount point that you defined in the install.
 Execute
 ```shell
 	rails generate csp_report:csp_declaration
@@ -92,7 +86,8 @@ above, one solution is to find this in your application_controller.rb file:
 ```
 
 1. You're all set. Accessing *application_root_url*/csp/csp_reports will display
-a list of all the CSP violation that were reported.
+a list of all the CSP violation that were reported (*csp* might be replaced by
+your custom mount point).
 
 Trying it out
 =============
@@ -109,6 +104,16 @@ not authorized. Just put some
 in one of your HTML rendered file and launch it in a browser. If the setup is
 correct and you browser supports CSP, the script will not play (no pop-up) and 
 you'll have one more record in the /csp/csp_reports list.
+
+Utilities
+=========
+
+* For general usage, a constant CspReport::MOUNT_POINT is defined with the 
+namespace provided while running the install generator. This constant is
+typically used in the response header construction.
+* For "plugability", as for any engine, rails gives some helper objects. While
+I could not get it to work as I wanted, in a view you can use *csp_report.routes.url_helpers*
+and it will give you access to all the engine URL helpers.
 
 Why using this gem
 ==================
@@ -134,6 +139,19 @@ To come
 =======
 
 * Eased data mining
+
+Upgrade from 0.1.x
+==================
+
+CAREFUL, 0.2.0 comes with DB changes. I won't do that in a minor after we are at
+v1, but for the moment, I thought it would not trouble too many people.
+
+Make sure to run
+```shell
+rake csp_report:install:migrations
+rake db:migrate
+```
+before continuing
 
 License
 =======

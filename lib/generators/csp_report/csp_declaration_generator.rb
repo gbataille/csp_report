@@ -11,7 +11,7 @@ module CspReport
   def csp
     policy =  "default *;"
     policy << "script-src 'self';"
-    policy << "report-uri /csp/csp_reports"
+    policy << "report-uri /\#{CspReport::MOUNT_POINT}/csp_reports"
     response.headers['Content-Security-Policy'] = policy
   end
 
