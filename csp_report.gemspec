@@ -25,6 +25,7 @@ MSG
 
   s.add_dependency "rails", "~> 4.0.0"
   s.add_dependency "haml", "~> 4.0.0"
+  s.add_dependency "colorize", "~> 0.5.8"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "rspec-rails", "~> 2.13.2"

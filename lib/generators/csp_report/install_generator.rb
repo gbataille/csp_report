@@ -1,28 +1,48 @@
+require 'colorize'
+
 module CspReport
   class InstallGenerator < Rails::Generators::Base
-    source_root File.expand_path('../../templates', __FILE__)
+
     argument :namespace, type: :string, default: 'csp'
+    class_option :add_declaration, type: :boolean, default: false,
+      aliases: "-a",
+      description: "Modify the application controller to add a filter for the CSP directive"
 
-    desc "Adds an initializer storing the defined namespace"
-    def setup_namespace
-      template "csp_report_initializer.erb", "config/initializers/csp_report.rb"
-    end
+    desc "Performs all the tasks for the initial install"
+    def install
 
-    desc "Adds route to the csp_report resource"
-    def setup_route
-      route "mount CspReport::Engine, at: '#{urlNamespace}'"
-    end
+      puts "Running the install procedure with mount point #{mount_point}"
+      puts "\n"
 
-    desc "Retrieves the migration files from the gem"
-    def setup_migration
-      rake "csp_report:install:migrations"
-      puts "\n    Don't forget to run 'rake db:migrate'\n"
+      # If it's not the first run, the generator will ask to overwrite the
+      # existing initializer
+      generate "csp_report:initializer_install" , "#{namespace}"
+      # If it is not the first run but the mount point was not change, nothing
+      # happens
+      generate "csp_report:mount"               , "#{namespace}"
+      # If this is not the first run, only the delta is copied.
+      generate "csp_report:migration"
+
+      if options.add_declaration?
+        generate "csp_report:csp_declaration"
+      end
     end
 
     private
 
-    def urlNamespace
-      namespace.underscore
+    # Proxy to get the override text displayed only once
+    def mount_point
+      @mount_point ||= mount_point_value
+    end
+
+    def mount_point_value
+      if defined? CspReport::MOUNT_POINT
+        puts "\nThe CspReport engine has already been installed.".yellow
+        puts "  Overriding the mount point to #{CspReport::MOUNT_POINT}.".yellow
+        CspReport::MOUNT_POINT
+      else
+        namespace
+      end
     end
   end
 end

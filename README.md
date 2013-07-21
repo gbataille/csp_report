@@ -53,9 +53,12 @@ Don't forget to run `bundle install` afterwards
 
 1. Run the generator. The engine mount point is configurable. By default it will be 
 **/csp** but you can change that to your liking by passing a parameter to the
-install generator
+install generator  
+If you want to run the easy install step just after, you can now pass the -a
+param to the install generator and it will execute the csp_declaration generator
+too
 ```shell
-	rails generate csp_report:install [mount_point_name]
+	rails generate csp_report:install [mount_point_name] [-a]
 ```
 It retrieve the db migration files from the gem and copy them in the application  
 It mounts the engine in the application (see routes.rb)  
