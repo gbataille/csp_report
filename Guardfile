@@ -4,6 +4,7 @@
 guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, 
   :rspec_env => { 'RAILS_ENV' => 'test' } do
 
+  watch('config/routes.rb')
   watch('spec/dummy/config/application.rb')
   watch('spec/dummy/config/environment.rb')
   watch('spec/dummy/config/environments/test.rb')
