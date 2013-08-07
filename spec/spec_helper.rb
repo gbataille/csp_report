@@ -27,8 +27,6 @@ Spork.prefork do
   # If you are not using ActiveRecord, you can remove this line.
   ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
-  FactoryGirl.find_definitions
-
   RSpec.configure do |config|
     # For engine testing. Makes the Engine routes helpers available to the test files
     config.include CspReport::Engine.routes.url_helpers
@@ -64,5 +62,5 @@ end
 
 Spork.each_run do
   # This code will be run each time you run your specs.
-
+  FactoryGirl.find_definitions
 end
