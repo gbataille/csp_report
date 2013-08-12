@@ -4,6 +4,12 @@ CspReport
 This gem provides a Rails engine that manages the CSP violations reported by
 the client browser (when supported).
 
+This gem was started with CSP v1.0 specification. On Aug 9th, an editor's draft
+of v1.1 was published. This gem currently has not been modified to support it.
+However v1.1 of CSP is spec'd to be backward compatible and from my lecture of
+the spec, I can't see anything that should not work if your browser ups to the
+new version.
+
 **Disclaimer**
 
 This is a rough cut gem for the moment. It won't look like much in the report
