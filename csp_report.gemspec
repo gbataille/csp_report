@@ -13,14 +13,9 @@ Gem::Specification.new do |s|
   s.summary     = "Provide reporting and analysis of your site CSP violations"
   s.description = "Provide reporting and analysis of your site CSP violations"
   s.license     = "MIT"
-  s.post_install_message = <<MSG
-The model changed in v0.2.0. Make sure to run both
-rake csp_report:install:migrations
-rake db:migrate
-after upgrading
-MSG
+  s.post_install_message = ""
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
+  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md", "CHANGELOG"]
   s.test_files = Dir["spec/**/*"]
 
   s.add_dependency "rails", "~> 4.0.0"

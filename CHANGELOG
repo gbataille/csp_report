@@ -1,3 +1,12 @@
+* From 0.3.0
+	- Developer additions (test coverage, Guard+Spork, ...)
+	- Mount point for the engine is now configurable as a parameter of the
+	generator
+	- Slightly updated install procedure
+	- Granular generators to perform smaller tasks
+	- Master generator to do a one action install
+	- Note in the README on the new editor's draft CSP 1.1 spec
+
 * From 0.2.0
 	- Adds ability to delete a violation from the reported ones
 	- Adds ability to remove all the violations
