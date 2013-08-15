@@ -16,8 +16,7 @@ This is a rough cut gem for the moment. It won't look like much in the report
 page. However, elements have a class so you can add some CSS style before I
  add some clean ones in the gem.
 
-I promise something cleaner when I'll get to v1 and when the W3C will have
-finalized the spec.
+I promise something cleaner when I'll get to v1.
 
 **Careful**: If migrating from 0.1.x, please follow 
 [these instructions](#upgrade-from-01x)
@@ -70,7 +69,8 @@ It retrieve the db migration files from the gem and copy them in the application
 It mounts the engine in the application (see routes.rb)  
 *Don't forget to run the `rake db:migrate` command*
 
-1. **EASY INSTALL**: use the helper generator to get your CSP directive skeleton.
+1. **EASY INSTALL**: if you used the *-a* parameter above, you can skip this
+Use the helper generator to get your CSP directive skeleton.
 It will use the mount point that you defined in the install.
 Execute
 ```shell
@@ -78,8 +78,8 @@ Execute
 ```
 You can then customize the directive in the ApplicationController.
 
-1. *(If you have not followed the previous step)* You need to configure a CSP on your 
-server response, with the *report_uri*
+1. *(If you have not followed the previous step and not used the -a parameter)* 
+You need to configure a CSP on your server response, with the *report_uri*
 parameters pointing to the configured REST resource above. Following the setup
 above, one solution is to find this in your application_controller.rb file:
 ```ruby
@@ -147,6 +147,8 @@ case you might gather stats and maybe warn them in one way or another).
 To come
 =======
 
+* Customization instructions
+* Support of CSP 1.1 draft spec
 * Eased data mining
 
 Upgrade from 0.1.x
