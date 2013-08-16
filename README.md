@@ -21,6 +21,9 @@ I promise something cleaner when I'll get to v1.
 **Careful**: If migrating from 0.1.x, please follow 
 [these instructions](#upgrade-from-01x)
 
+**Careful**: If migrating from 0.2.x or below, you can follow 
+[these instructions](#upgrade-from-02x). This is not mandatory.
+
 What is CSP
 ===========
 
@@ -163,6 +166,24 @@ rake csp_report:install:migrations
 rake db:migrate
 ```
 before continuing
+
+Upgrade from 0.2.x
+==================
+
+Version 0.3.0 comes with a configurable mount point and a couple of helpers that
+are accessible through the generators.
+While not strictly necessary (at least for the moment nothing depends on it),
+I would advise to
+* Edit your config/routes.rb and remove the mount instruction for the engine
+* run the mount generator. You can take this opportunity to configure the mount
+point to be something else than the default 'csp' by simply passing a name:
+```shell
+rails generate csp_report:mount [NAMESPACE]
+```
+* run the initializer generator
+```shell
+rails generate csp_report:initializer_install
+```
 
 License
 =======
