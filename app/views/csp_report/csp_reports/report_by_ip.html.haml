@@ -1,0 +1,15 @@
+%h1
+  Breaches by IP
+
+%table.csp-report.report.by-ip
+  %tr.csp-report.report.by-ip.header.row
+    %th.csp-report.report.by-ip.header.cell
+      Incoming IP
+    %th.csp-report.report.by-ip.header.cell
+      Number of breaches reported
+  -for report in @report_by_ip
+    %tr.csp-report.report.by-ip.row
+      %td.csp-report.report.by-ip.cell
+        =report.incoming_ip
+      %td.csp-report.report.by-ip.cell
+        =report.count
