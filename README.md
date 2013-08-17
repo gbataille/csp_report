@@ -117,6 +117,26 @@ in one of your HTML rendered file and launch it in a browser. If the setup is
 correct and you browser supports CSP, the script will not play (no pop-up) and 
 you'll have one more record in the /csp/csp_reports list.
 
+Tuning the engine
+=================
+
+#### Overriding the engine's CSS
+
+The engine comes packages with some CSS so that the page do not look ugly.
+Since it is meant to be available for site admins or developers, the look&feel
+is a secondary concern. Still you might want to customize it for consistency
+with your site.
+This is easy to do. Indeed, all the classes used are namespaced with *csp-report*.
+To customize the CSS, just create the following file:
+*app/assets/stylesheets/csp_report/csp_report.css*
+
+Careful though, this is going to remove all the styles definition, so you'll
+have to redefine every single one of them.
+
+#### Changing the CSP rule per controller/action
+
+TODO - gbataille - Fill in this section
+
 Utilities
 =========
 
