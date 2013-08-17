@@ -31,4 +31,10 @@ class CspReport::CspReportsController < ApplicationController
     CspReport::CspReport.delete_all
     redirect_to csp_reports_path
   end
+
+  def report_by_ip
+    @report_by_ip = CspReport::CspReport.select(
+      "incoming_ip, count(*) as count").group("incoming_ip")
+    render status:200
+  end
 end
