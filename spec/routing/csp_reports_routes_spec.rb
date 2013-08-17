@@ -16,4 +16,7 @@ describe 'csp_report routing' do
   it 'should respond to delete_all requests' do
     get('/csp_reports/destroy_all').should route_to 'csp_report/csp_reports#destroy_all'
   end
+  it 'should respond to report_by_ip requests' do
+    get('/csp_reports/report_by_ip').should route_to 'csp_report/csp_reports#report_by_ip'
+  end
 end
