@@ -18,11 +18,17 @@ page. However, elements have a class so you can add some CSS style before I
 
 I promise something cleaner when I'll get to v1.
 
+[Installation](#install) | [Upgrade](#upgrade-notes) | 
+[Configuration](#trying-it-out) | [Description](#what-is-csp)
+
 **Careful**: If migrating from 0.1.x, please follow 
 [these instructions](#upgrade-from-01x)
 
 **Careful**: If migrating from 0.2.x or below, you can follow 
-[these instructions](#upgrade-from-02x). This is not mandatory.
+[these instructions](#upgrade-from-02x-or-below). This is not mandatory.
+
+**Careful**: If migrating from 0.3.x or below, you can follow 
+[these instructions](#upgrade-from-03x-or-below). This is mandatory.
 
 What is CSP
 ===========
@@ -48,7 +54,28 @@ Features
 
 * Provides a *csp_report* resource that stores the reported violations.
 * Displays the violation for analysis
+* Keeps up-to-date with the CSP W3C RFC
 * Future: provide visualization aids on the report data
+
+Why using this gem
+==================
+
+CSP is yet another layer of protection, basically relying on the browser to do
+some level of control. This is a way to prevent some man in the middle attack 
+where someone intercepts the server response and try to change it. While not
+foolproof, it's a good additional security layer.
+
+This gem comes in handy for 2 reasons:
+* First, when activating CSP directives on your existing site, it is likely 
+that you'll have a hard
+time figuring out all the sources you are using. By recording all the breaches,
+ this gem allows you to setup a policy, run a crawler for example, and then 
+look at what is reported as breaches. It will help you getting rid of your 
+inline js and so on.
+* Second, in normal production mode, it'll help you monitor the situation and 
+see if your server has been victim of some injection (if some input is not 
+sanitize properly) or if your users are being attacked in some way (in which 
+case you might gather stats and maybe warn them in one way or another).
 
 Install
 =======
@@ -147,26 +174,6 @@ typically used in the response header construction.
 I could not get it to work as I wanted, in a view you can use *csp_report.routes.url_helpers*
 and it will give you access to all the engine URL helpers.
 
-Why using this gem
-==================
-
-CSP is yet another layer of protection, basically relying on the browser to do
-some level of control. This is a way to prevent some man in the middle attack 
-where someone intercepts the server response and try to change it. While not
-foolproof, it's a good additional security layer.
-
-This gem comes in handy for 2 reasons:
-* First, when activating CSP directives on your existing site, it is likely 
-that you'll have a hard
-time figuring out all the sources you are using. By recording all the breaches,
- this gem allows you to setup a policy, run a crawler for example, and then 
-look at what is reported as breaches. It will help you getting rid of your 
-inline js and so on.
-* Second, in normal production mode, it'll help you monitor the situation and 
-see if your server has been victim of some injection (if some input is not 
-sanitize properly) or if your users are being attacked in some way (in which 
-case you might gather stats and maybe warn them in one way or another).
-
 To come
 =======
 
@@ -174,8 +181,11 @@ To come
 * Support of CSP 1.1 draft spec
 * Eased data mining
 
+Upgrade notes
+=============
+
 Upgrade from 0.1.x
-==================
+------------------
 
 CAREFUL, 0.2.0 comes with DB changes. I won't do that in a minor after we are at
 v1, but for the moment, I thought it would not trouble too many people.
@@ -187,8 +197,8 @@ rake db:migrate
 ```
 before continuing
 
-Upgrade from 0.2.x
-==================
+Upgrade from 0.2.x or below
+---------------------------
 
 Version 0.3.0 comes with a configurable mount point and a couple of helpers that
 are accessible through the generators.
@@ -204,6 +214,16 @@ rails generate csp_report:mount [NAMESPACE]
 ```shell
 rails generate csp_report:initializer_install
 ```
+
+Upgrade from 0.3.x or below
+---------------------------
+
+Version 0.4.0 and above introduce a new javascript integration point to add the
+highchart library used to produce some visualization of the reporting data.
+The install generator would provide the additional hook. Rather than re-running
+the entire install (not tested), you can either
+* run the `csp_report:highcharts_include` generator
+* or add the `//= require csp_report` in your application.js file.
 
 License
 =======

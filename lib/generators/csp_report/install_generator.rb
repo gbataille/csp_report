@@ -20,6 +20,8 @@ module CspReport
       # If it is not the first run but the mount point was not change, nothing
       # happens
       generate "csp_report:mount"               , "#{mount_point}"
+      # Adds the JS include
+      generate "csp_report:highcharts_include"
       # If this is not the first run, only the delta is copied.
       generate "csp_report:migration"
 

@@ -1,3 +1,7 @@
+* From 0.4.0
+	- Follow the upgrade instruction to add the JS hook
+	- Adds charting capabilities for data visualization
+
 * From 0.3.0
 	- Developer additions (test coverage, Guard+Spork, ...)
 	- Mount point for the engine is now configurable as a parameter of the
