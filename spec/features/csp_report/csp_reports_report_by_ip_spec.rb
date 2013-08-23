@@ -16,7 +16,7 @@ describe 'CspReport report by IP view' do
 
   it 'should display each IP only once' do
     visit csp_reports_report_by_ip_path
-    page.body.scan(@localhost4.incoming_ip).size.should eq 1
-    page.body.scan(@localhost6.incoming_ip).size.should eq 1
+    find('//table[@id="byip"]').text.scan(@localhost4.incoming_ip).size.should eq 1
+    find('//table[@id="byip"]').text.scan(@localhost6.incoming_ip).size.should eq 1
   end
 end
