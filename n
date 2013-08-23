@@ -1,0 +1,37 @@
+{ "title":
+  { "text": "THA PIE" }
+  ,"legend":
+  { "layout": "vertical","style":
+    { "left": "auto","bottom": "auto","right": "50px","top": "100px" }
+  }
+  ,"xAxis":
+  {  }
+  ,"yAxis":
+  { "title":
+    { "text": null }
+    ,"labels":
+    {  }
+  }
+  ,"tooltip":
+  { "enabled": true }
+  ,"credits":
+  { "enabled": false }
+  ,"plotOptions":
+  { "areaspline":
+    {  }
+  }
+  ,"chart":
+  { "defaultSeriesType": "pie","margin": [ 50,200,60,170 ],"renderTo": "my_id4" }
+  ,"subtitle":
+  {  }
+  ,"plotOptions":
+  { "pie":
+    { "allowPointSelect": true,"cursor": "pointer","dataLabels":
+      { "enabled": true,"color": "black","style":
+        { "font": "13px Trebuchet MS, Verdana, sans-serif" }
+      }
+    }
+  }
+  ,"series": [{ "type": "pie","name": "Violations by client IP","data": [ [ "127.0.0.1",4 ],[ "::1",2 ] ] }
+  ] }
+  ;

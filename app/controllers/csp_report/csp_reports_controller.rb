@@ -35,6 +35,45 @@ class CspReport::CspReportsController < ApplicationController
   def report_by_ip
     @report_by_ip = CspReport::CspReport.select(
       "incoming_ip, count(*) as count").group("incoming_ip")
-    render status:200
+
+    data = []
+    for report in @report_by_ip
+      data.push [report.incoming_ip, report.count]
+    end
+
+    @chart = {
+      chart: {
+        :defaultSeriesType=>"pie" ,
+        :margin=> [50, 200, 60, 170]
+      },
+      series: [{
+        :type=> 'pie',
+        :name=> 'Violations by client IP',
+        :data=> data
+      }],
+      title: {text:  "By IP"},
+      legend: {
+        :layout=> 'vertical',
+        :style=> {
+          :left=> 'auto',
+          :bottom=> 'auto',
+          :right=> '50px',
+          :top=> '100px'
+        }
+      },
+      plotOptions: {
+        :pie=>{
+          :allowPointSelect=>true,
+          :cursor=>"pointer" ,
+          :dataLabels=>{
+            :enabled=>true,
+            :color=>"black",
+            :style=>{
+              :font=>"13px Trebuchet MS, Verdana, sans-serif"
+            }
+          }
+        }
+      }
+    }
   end
 end

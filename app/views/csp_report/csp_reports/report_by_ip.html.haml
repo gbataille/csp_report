@@ -1,7 +1,9 @@
+=javascript_include_tag "csp_report/report_by_ip"
+
 %h1
   Breaches by IP
 
-%table.csp-report.report.by-ip
+%table#byip.csp-report.report.by-ip
   %tr.csp-report.report.by-ip.header.row
     %th.csp-report.report.by-ip.header.cell
       Incoming IP
@@ -13,3 +15,6 @@
         =report.incoming_ip
       %td.csp-report.report.by-ip.cell
         =report.count
+
+-@chart[:chart][:renderTo] = "chart"    # Hooking the chart in the right place
+%div#chart{:"data-chart" => @chart.to_json}
