@@ -1,7 +1,10 @@
-=javascript_include_tag "csp_report/report_by_ip"
+=javascript_include_tag "csp_report/report"
 
 %h1
   Breaches by IP
+
+%p
+  =link_to 'Back to the violations view', csp_reports_path
 
 %table#byip.csp-report.report.by-ip
   %tr.csp-report.report.by-ip.header.row
