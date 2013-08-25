@@ -78,4 +78,16 @@ describe 'CspReport index view' do
         {href: csp_reports_destroy_all_path}
     end
   end
+
+  describe 'Links to data presentation' do
+    it 'should have a link to the report by IP' do
+      visit csp_reports_path
+      page.should have_link 'By IP'
+    end
+
+    it 'should have a link to the report by Rule' do
+      visit csp_reports_path
+      page.should have_link 'By Violated Directive'
+    end
+  end
 end
