@@ -19,4 +19,7 @@ describe 'csp_report routing' do
   it 'should respond to report_by_ip requests' do
     get('/csp_reports/report_by_ip').should route_to 'csp_report/csp_reports#report_by_ip'
   end
+  it 'should respond to report_by_rule requests' do
+    get('/csp_reports/report_by_rule').should route_to 'csp_report/csp_reports#report_by_rule'
+  end
 end

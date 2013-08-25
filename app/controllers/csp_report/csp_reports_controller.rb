@@ -76,4 +76,49 @@ class CspReport::CspReportsController < ApplicationController
       }
     }
   end
+
+  def report_by_rule
+    @report_by_rule = CspReport::CspReport.select(
+      "violated_directive, count(*) as count").group("violated_directive")
+
+    data = []
+    for report in @report_by_rule
+      data.push [report.violated_directive, report.count]
+    end
+
+    @chart = {
+      chart: {
+        :defaultSeriesType=>"pie" ,
+        :margin=> [50, 200, 60, 170]
+      },
+      series: [{
+        :type=> 'pie',
+        :name=> 'Violations by violated policy',
+        :data=> data
+      }],
+      title: {text:  "By rule"},
+      legend: {
+        :layout=> 'vertical',
+        :style=> {
+          :left=> 'auto',
+          :bottom=> 'auto',
+          :right=> '50px',
+          :top=> '100px'
+        }
+      },
+      plotOptions: {
+        :pie=>{
+          :allowPointSelect=>true,
+          :cursor=>"pointer" ,
+          :dataLabels=>{
+            :enabled=>true,
+            :color=>"black",
+            :style=>{
+              :font=>"13px Trebuchet MS, Verdana, sans-serif"
+            }
+          }
+        }
+      }
+    }
+  end
 end

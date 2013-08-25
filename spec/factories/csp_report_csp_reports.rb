@@ -25,4 +25,13 @@ FactoryGirl.define do
     original_policy "script-src 'self'; report-uri /csp/csp_reports"
     incoming_ip "::1"
   end
+
+  factory :local_script_star, :class => 'CspReport::CspReport' do
+    document_uri "http://localhost:3000"
+    referrer ""
+    blocked_uri ""
+    violated_directive "script-src *"
+    original_policy "script-src *; report-uri /csp/csp_reports"
+    incoming_ip "127.0.0.1"
+  end
 end

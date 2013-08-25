@@ -93,5 +93,32 @@ describe CspReport::CspReportsController do
         end
       end
     end
+
+    describe "report by rule" do
+      before do
+        @script_self   = FactoryGirl.create(:local_inline)
+        @script_star   = FactoryGirl.create(:local_script_star)
+        @script_self_2 = FactoryGirl.create(:local_inline)
+        @script_star_2 = FactoryGirl.create(:local_script_star)
+
+        @distinct_rule = {}
+        @distinct_rule.store @script_self.violated_directive, 1
+        @distinct_rule.store @script_star.violated_directive, 1
+      end
+
+      it "display successfully" do
+        get :report_by_rule, use_route: 'csp'
+        assert_response(:success)
+      end
+
+      it "should have each rule only once" do
+        get :report_by_rule, use_route: 'csp'
+        report_by_rule = assigns(:report_by_rule)
+        for report in report_by_rule
+          @distinct_rule.should have_key report.violated_directive
+          @distinct_rule.delete report.violated_directive
+        end
+      end
+    end
   end
 end

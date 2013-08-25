@@ -4,6 +4,7 @@ CspReport::Engine.routes.draw do
   # the show XXX item action
   get '/csp_reports/destroy_all'
   get '/csp_reports/report_by_ip'
+  get '/csp_reports/report_by_rule'
 
   resources :csp_reports, except: [:create]
   resources :csp_reports, only: [:create], constraints: { format: /(json|xml)/ }
