@@ -21,7 +21,7 @@ describe 'CspReport report by IP view' do
   end
 
   it 'should have a link back to the violation page' do
-    visit csp_reports_report_by_rule_path
+    visit csp_reports_report_by_source_path
     page.should have_link 'Back to the violations view'
   end
 end
