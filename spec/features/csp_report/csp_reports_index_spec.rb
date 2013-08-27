@@ -89,5 +89,10 @@ describe 'CspReport index view' do
       visit csp_reports_path
       page.should have_link 'By Violated Directive'
     end
+
+    it 'should have a link to the report by Source' do
+      visit csp_reports_path
+      page.should have_link 'By Source Document URI'
+    end
   end
 end

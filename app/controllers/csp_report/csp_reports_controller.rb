@@ -121,4 +121,49 @@ class CspReport::CspReportsController < ApplicationController
       }
     }
   end
+
+  def report_by_source
+    @report_by_source = CspReport::CspReport.select(
+      "document_uri, count(*) as count").group("document_uri")
+
+    data = []
+    for report in @report_by_source
+      data.push [report.document_uri, report.count]
+    end
+
+    @chart = {
+      chart: {
+        :defaultSeriesType=>"pie" ,
+        :margin=> [50, 200, 60, 170]
+      },
+      series: [{
+        :type=> 'pie',
+        :name=> 'Violations by source document URI',
+        :data=> data
+      }],
+      title: {text:  "By source"},
+      legend: {
+        :layout=> 'vertical',
+        :style=> {
+          :left=> 'auto',
+          :bottom=> 'auto',
+          :right=> '50px',
+          :top=> '100px'
+        }
+      },
+      plotOptions: {
+        :pie=>{
+          :allowPointSelect=>true,
+          :cursor=>"pointer" ,
+          :dataLabels=>{
+            :enabled=>true,
+            :color=>"black",
+            :style=>{
+              :font=>"13px Trebuchet MS, Verdana, sans-serif"
+            }
+          }
+        }
+      }
+    }
+  end
 end

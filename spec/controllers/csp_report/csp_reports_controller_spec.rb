@@ -120,5 +120,32 @@ describe CspReport::CspReportsController do
         end
       end
     end
+
+    describe "report by source" do
+      before do
+        @script_local   = FactoryGirl.create(:local_inline)
+        @script_home    = FactoryGirl.create(:local_home_index_inline)
+        @script_local_2 = FactoryGirl.create(:local_inline)
+        @script_home_2  = FactoryGirl.create(:local_home_index_inline)
+
+        @distinct_source = {}
+        @distinct_source.store @script_local.document_uri, 1
+        @distinct_source.store @script_home.document_uri, 1
+      end
+
+      it "display successfully" do
+        get :report_by_source, use_route: 'csp'
+        assert_response(:success)
+      end
+
+      it "should have each source only once" do
+        get :report_by_source, use_route: 'csp'
+        report_by_source = assigns(:report_by_source)
+        for report in report_by_source
+          @distinct_source.should have_key report.document_uri
+          @distinct_source.delete report.document_uri
+        end
+      end
+    end
   end
 end
