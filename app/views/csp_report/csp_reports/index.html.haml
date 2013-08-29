@@ -1,44 +1,52 @@
 =stylesheet_link_tag "csp_report/csp_report.css"
 
-%table.csp-report.report-table
-  %tr.csp-report.report-row
-    %th.csp-report.report-header
-      ID
-    %th.csp-report.report-header
-      Document URI
-    %th.csp-report.report-header
-      Referrer
-    %th.csp-report.report-header
-      Server Policy
-    %th.csp-report.report-header
-      Violated Directive
-    %th.csp-report.report-header
-      Blocked URI
-    %th.csp-report.report-header
-      Incoming IP
-    %th.csp-report.report-header
-      Reported At
-    %th.csp-report.report-header
-      Actions
-  - @reports.each do |report|
-    %tr.csp-report.report-row
-      %td.csp-report.report-cell=report.id
-      %td.csp-report.report-cell=report.document_uri
-      %td.csp-report.report-cell=report.referrer
-      %td.csp-report.report-cell=report.original_policy
-      %td.csp-report.report-cell=report.violated_directive
-      %td.csp-report.report-cell=report.blocked_uri
-      %td.csp-report.report-cell=report.incoming_ip
-      %td.csp-report.report-cell=report.created_at
-      %td.csp-report.report-cell
-        =link_to('Delete violation', csp_report_path(report.id), method: 'delete')
+.csp-report.row
+  .csp-report.offset3.span6
+    %p
+      =link_to "By IP", csp_reports_report_by_ip_path
+      |
+      =link_to "By Violated Directive", csp_reports_report_by_rule_path
+      |
+      =link_to "By Source Document URI", csp_reports_report_by_source_path
 
-%p
-  =link_to "By IP", csp_reports_report_by_ip_path
-  |
-  =link_to "By Violated Directive", csp_reports_report_by_rule_path
-  |
-  =link_to "By Source Document URI", csp_reports_report_by_source_path
-%p
-  =link_to "Delete All", csp_reports_destroy_all_path, 
-    data: {confirm: "Are you sure you want to delete all the violation reports?"}
+.csp-report.row
+  .csp-report.offset3.span6
+    %table.csp-report.report-table
+      %tr.csp-report.report-row
+        %th.csp-report.report-header
+          ID
+        %th.csp-report.report-header
+          Document URI
+        %th.csp-report.report-header
+          Referrer
+        %th.csp-report.report-header
+          Server Policy
+        %th.csp-report.report-header
+          Violated Directive
+        %th.csp-report.report-header
+          Blocked URI
+        %th.csp-report.report-header
+          Incoming IP
+        %th.csp-report.report-header
+          Reported At
+        %th.csp-report.report-header
+          Actions
+      - @reports.each do |report|
+        %tr.csp-report.report-row
+          %td.csp-report.report-cell=report.id
+          %td.csp-report.report-cell=report.document_uri
+          %td.csp-report.report-cell=report.referrer
+          %td.csp-report.report-cell=report.original_policy
+          %td.csp-report.report-cell=report.violated_directive
+          %td.csp-report.report-cell=report.blocked_uri
+          %td.csp-report.report-cell=report.incoming_ip
+          %td.csp-report.report-cell=report.created_at
+          %td.csp-report.report-cell
+            =link_to('Delete violation', csp_report_path(report.id), method: 'delete')
+
+.csp-report.row
+  .csp-report.offset1.span10
+
+    %p
+      =link_to "Delete All", csp_reports_destroy_all_path, 
+        data: {confirm: "Are you sure you want to delete all the violation reports?"}
