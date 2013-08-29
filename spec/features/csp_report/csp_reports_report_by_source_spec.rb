@@ -16,7 +16,6 @@ describe 'CspReport report by source view' do
 
   it 'should display each source only once' do
     visit csp_reports_report_by_source_path
-    puts page
     find('//table[@id="bysource"]').text.scan(@script_home.document_uri).size.should eq 1
     find('//table[@id="bysource"]').text.scan(@script_about.document_uri).size.should eq 1
   end
