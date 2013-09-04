@@ -1,24 +1,45 @@
 =javascript_include_tag "csp_report/report"
+=stylesheet_link_tag "csp_report/csp_report.css"
 
-%h1
-  Breaches by Violated Directive
+-# TODO: gbataille - Factorize this in a layout
+.csp-report.row
+  .csp-report.navbar.navbar-fixed-top
+    .csp-report.navbar-inner
+      .csp-report.container
+        %a.brand{href: "#"}
+          CSP Reports
+        %ul.nav
+          %li
+            =link_to "Violations", csp_reports_path
+          %li.divider-vertical
+          %li
+            =link_to "By IP", csp_reports_report_by_ip_path
+          %li.active
+            =link_to "By Violated Directive", csp_reports_report_by_rule_path
+          %li
+            =link_to "By Source Document URI", csp_reports_report_by_source_path
 
-%p
-  =link_to 'Back to the violations view', csp_reports_path
+.csp-report.row.padding-navbar
+  .csp-report.offset2.span8
+    %h1
+      Breaches by Violated Directive
 
-%table#byrule.csp-report.report.by-rule
-  %tr.csp-report.report.by-rule.header.row
-    %th.csp-report.report.by-rule.header.cell
-      Violated Directive
-    %th.csp-report.report.by-rule.header.cell
-      Number of breaches reported
-  -for report in @report_by_rule
-    %tr.csp-report.report.by-rule.row
-      %td.csp-report.report.by-rule.cell
-        =report.violated_directive
-      %td.csp-report.report.by-rule.cell
-        =report.count
+    %p
+      =link_to 'Back to the violations view', csp_reports_path
 
--@chart[:chart][:renderTo] = "chart"    # Hooking the chart in the right place
-%div#chart{:"data-chart" => @chart.to_json}
+    %table#byrule.csp-report.report.by-rule
+      %tr.csp-report.report.by-rule.header.row
+        %th.csp-report.report.by-rule.header.cell
+          Violated Directive
+        %th.csp-report.report.by-rule.header.cell
+          Number of breaches reported
+      -for report in @report_by_rule
+        %tr.csp-report.report.by-rule.row
+          %td.csp-report.report.by-rule.cell
+            =report.violated_directive
+          %td.csp-report.report.by-rule.cell
+            =report.count
+
+    -@chart[:chart][:renderTo] = "chart"    # Hooking the chart in the right place
+    %div#chart{:"data-chart" => @chart.to_json}
 

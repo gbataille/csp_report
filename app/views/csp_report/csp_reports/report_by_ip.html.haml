@@ -1,23 +1,44 @@
+=stylesheet_link_tag "csp_report/csp_report.css"
 =javascript_include_tag "csp_report/report"
 
-%h1
-  Breaches by IP
+-# TODO: gbataille - Factorize this in a layout
+.csp-report.row
+  .csp-report.navbar.navbar-fixed-top
+    .csp-report.navbar-inner
+      .csp-report.container
+        %a.brand{href: "#"}
+          CSP Reports
+        %ul.nav
+          %li
+            =link_to "Violations", csp_reports_path
+          %li.divider-vertical
+          %li.active
+            =link_to "By IP", csp_reports_report_by_ip_path
+          %li
+            =link_to "By Violated Directive", csp_reports_report_by_rule_path
+          %li
+            =link_to "By Source Document URI", csp_reports_report_by_source_path
 
-%p
-  =link_to 'Back to the violations view', csp_reports_path
+.csp-report.row.padding-navbar
+  .csp-report.offset2.span8
+    %h1
+      Breaches by IP
 
-%table#byip.csp-report.report.by-ip
-  %tr.csp-report.report.by-ip.header.row
-    %th.csp-report.report.by-ip.header.cell
-      Incoming IP
-    %th.csp-report.report.by-ip.header.cell
-      Number of breaches reported
-  -for report in @report_by_ip
-    %tr.csp-report.report.by-ip.row
-      %td.csp-report.report.by-ip.cell
-        =report.incoming_ip
-      %td.csp-report.report.by-ip.cell
-        =report.count
+    %p
+      =link_to 'Back to the violations view', csp_reports_path
 
--@chart[:chart][:renderTo] = "chart"    # Hooking the chart in the right place
-%div#chart{:"data-chart" => @chart.to_json}
+    %table#byip.csp-report.report.by-ip
+      %tr.csp-report.report.by-ip.header.row
+        %th.csp-report.report.by-ip.header.cell
+          Incoming IP
+        %th.csp-report.report.by-ip.header.cell
+          Number of breaches reported
+      -for report in @report_by_ip
+        %tr.csp-report.report.by-ip.row
+          %td.csp-report.report.by-ip.cell
+            =report.incoming_ip
+          %td.csp-report.report.by-ip.cell
+            =report.count
+
+    -@chart[:chart][:renderTo] = "chart"    # Hooking the chart in the right place
+    %div#chart{:"data-chart" => @chart.to_json}
