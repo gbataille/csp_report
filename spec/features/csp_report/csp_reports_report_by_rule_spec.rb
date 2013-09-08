@@ -18,8 +18,4 @@ describe 'CspReport report by rule view' do
     find('//table[@id="byrule"]').text.scan(@script_star.violated_directive).size.should eq 1
   end
 
-  it 'should have a link back to the violation page' do
-    visit csp_reports_report_by_rule_path
-    page.should have_link 'Back to the violations view'
-  end
 end

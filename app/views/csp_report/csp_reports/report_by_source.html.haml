@@ -24,22 +24,23 @@
     %h1
       Breaches by Source Document URI
 
-    %p
-      =link_to 'Back to the violations view', csp_reports_path
+    %table#bysource.csp-report.report.by-source.table.table-striped
+      %thead
+        %tr.csp-report.report.by-source.header.row
+          %th.csp-report.report.by-source.header.cell
+            Source Document URI
+          %th.csp-report.report.by-source.header.cell
+            Number of breaches reported
+      %tbody
+        -for report in @report_by_source
+          %tr.csp-report.report.by-source.row
+            %td.csp-report.report.by-source.cell
+              =report.document_uri
+            %td.csp-report.report.by-source.cell
+              =report.count
 
-    %table#bysource.csp-report.report.by-source
-      %tr.csp-report.report.by-source.header.row
-        %th.csp-report.report.by-source.header.cell
-          Source Document URI
-        %th.csp-report.report.by-source.header.cell
-          Number of breaches reported
-      -for report in @report_by_source
-        %tr.csp-report.report.by-source.row
-          %td.csp-report.report.by-source.cell
-            =report.document_uri
-          %td.csp-report.report.by-source.cell
-            =report.count
-
+.csp-report.row
+  .csp-report.span12
     -@chart[:chart][:renderTo] = "chart"    # Hooking the chart in the right place
     %div#chart{:"data-chart" => @chart.to_json}
 

@@ -1,6 +1,7 @@
 * From 0.4.0
 	- Follow the upgrade instruction to add the JS hook
 	- Adds charting capabilities for data visualization
+	- Adds styling from bootstrap and a common navigation pattern
 
 * From 0.3.0
 	- Developer additions (test coverage, Guard+Spork, ...)

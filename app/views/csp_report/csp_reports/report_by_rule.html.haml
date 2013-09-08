@@ -24,22 +24,23 @@
     %h1
       Breaches by Violated Directive
 
-    %p
-      =link_to 'Back to the violations view', csp_reports_path
+    %table#byrule.csp-report.report.by-rule.table.table-striped
+      %thead
+        %tr.csp-report.report.by-rule.header.row
+          %th.csp-report.report.by-rule.header.cell
+            Violated Directive
+          %th.csp-report.report.by-rule.header.cell
+            Number of breaches reported
+      %tbody
+        -for report in @report_by_rule
+          %tr.csp-report.report.by-rule.row
+            %td.csp-report.report.by-rule.cell
+              =report.violated_directive
+            %td.csp-report.report.by-rule.cell
+              =report.count
 
-    %table#byrule.csp-report.report.by-rule
-      %tr.csp-report.report.by-rule.header.row
-        %th.csp-report.report.by-rule.header.cell
-          Violated Directive
-        %th.csp-report.report.by-rule.header.cell
-          Number of breaches reported
-      -for report in @report_by_rule
-        %tr.csp-report.report.by-rule.row
-          %td.csp-report.report.by-rule.cell
-            =report.violated_directive
-          %td.csp-report.report.by-rule.cell
-            =report.count
-
+.csp-report.row
+  .csp-report.span12
     -@chart[:chart][:renderTo] = "chart"    # Hooking the chart in the right place
     %div#chart{:"data-chart" => @chart.to_json}
 

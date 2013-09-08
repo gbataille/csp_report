@@ -20,9 +20,5 @@ describe 'CspReport report by source view' do
     find('//table[@id="bysource"]').text.scan(@script_about.document_uri).size.should eq 1
   end
 
-  it 'should have a link back to the violation page' do
-    visit csp_reports_report_by_source_path
-    page.should have_link 'Back to the violations view'
-  end
 end
 

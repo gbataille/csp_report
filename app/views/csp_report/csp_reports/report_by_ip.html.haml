@@ -24,21 +24,22 @@
     %h1
       Breaches by IP
 
-    %p
-      =link_to 'Back to the violations view', csp_reports_path
+    %table#byip.csp-report.report.by-ip.table.table-striped
+      %thead
+        %tr.csp-report.report.by-ip.header.row
+          %th.csp-report.report.by-ip.header.cell
+            Incoming IP
+          %th.csp-report.report.by-ip.header.cell
+            Number of breaches reported
+      %tbody
+        -for report in @report_by_ip
+          %tr.csp-report.report.by-ip.row
+            %td.csp-report.report.by-ip.cell
+              =report.incoming_ip
+            %td.csp-report.report.by-ip.cell
+              =report.count
 
-    %table#byip.csp-report.report.by-ip
-      %tr.csp-report.report.by-ip.header.row
-        %th.csp-report.report.by-ip.header.cell
-          Incoming IP
-        %th.csp-report.report.by-ip.header.cell
-          Number of breaches reported
-      -for report in @report_by_ip
-        %tr.csp-report.report.by-ip.row
-          %td.csp-report.report.by-ip.cell
-            =report.incoming_ip
-          %td.csp-report.report.by-ip.cell
-            =report.count
-
+.csp-report.row
+  .csp-report.span12
     -@chart[:chart][:renderTo] = "chart"    # Hooking the chart in the right place
     %div#chart{:"data-chart" => @chart.to_json}
