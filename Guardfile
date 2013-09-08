@@ -31,6 +31,7 @@ guard :rspec, cli: "--drb" do
 
   # Capybara features specs
   watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/features/#{m[1]}_spec.rb" }
+  watch(%r{^app/views/csp_report/csp_reports/(.+)\.html\.(erb|haml)$})    { |m| "spec/features/csp_report/csp_reports_#{m[1]}_spec.rb" }
 
   # Turnip features and steps
   watch(%r{^spec/acceptance/(.+)\.feature$})
