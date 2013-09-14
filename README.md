@@ -4,17 +4,19 @@ CspReport
 This gem provides a Rails engine that manages the CSP violations reported by
 the client browser (when supported).
 
-This gem was started with CSP v1.0 specification. On Aug 9th, an editor's draft
-of v1.1 was published. This gem currently has not been modified to support it.
-However v1.1 of CSP is spec'd to be backward compatible and from my lecture of
-the spec, I can't see anything that should not work if your browser ups to the
-new version.
+As of today (Sept 14th), a new editor's draft of CSP 1.1 is available and got
+rid of the new proposed report elements. Therefore, as of today too, I'll
+publish the current version of the gem as the csp_report 1.0 version.
 
 [Installation](#install) | [Upgrade](#upgrade-notes) | 
 [Configuration](#trying-it-out) | [Description](#what-is-csp)
 
 **Careful**: If migrating from an earlier version, please look up the upgrage
 instructions.
+
+Now that v1.0 is out, I would advise to redo an install from scratch or to 
+consult the new [INSTALL](./INSTALL.md) file for details of what should be 
+installed
 
 What is CSP
 ===========
@@ -148,7 +150,10 @@ have to redefine every single one of them.
 
 #### Changing the CSP rule per controller/action
 
-TODO - gbataille - Fill in this section
+This is not tested, but by adding a before_filter to any of your controller,
+you should be able to override the application level CSP directive.
+
+TODO - gbataille - Test it
 
 Utilities
 =========
