@@ -1,6 +1,8 @@
 CspReport
 =========
 
+[![Latest Released Gem Version](https://badge.fury.io/rb/csp_report.png)](http://badge.fury.io/rb/csp_report)
+
 This gem provides a Rails engine that manages the CSP violations reported by
 the client browser (when supported).
 
