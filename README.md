@@ -10,25 +10,11 @@ However v1.1 of CSP is spec'd to be backward compatible and from my lecture of
 the spec, I can't see anything that should not work if your browser ups to the
 new version.
 
-**Disclaimer**
-
-This is a rough cut gem for the moment. It won't look like much in the report
-page. However, elements have a class so you can add some CSS style before I
- add some clean ones in the gem.
-
-I promise something cleaner when I'll get to v1.
-
 [Installation](#install) | [Upgrade](#upgrade-notes) | 
 [Configuration](#trying-it-out) | [Description](#what-is-csp)
 
-**Careful**: If migrating from 0.1.x, please follow 
-[these instructions](#upgrade-from-01x)
-
-**Careful**: If migrating from 0.2.x or below, you can follow 
-[these instructions](#upgrade-from-02x-or-below). This is not mandatory.
-
-**Careful**: If migrating from 0.3.x or below, you can follow 
-[these instructions](#upgrade-from-03x-or-below). This is mandatory.
+**Careful**: If migrating from an earlier version, please look up the upgrage
+instructions.
 
 What is CSP
 ===========
@@ -44,7 +30,7 @@ For more information, consult
 
 [Browser supporting CSP](http://caniuse.com/#search=csp)
 
-Tested in Chrome 27 and shown to work with the *'Content-Security-Policy'* new
+Tested in Chrome (since version 27) and shown to work with the *'Content-Security-Policy'* new
 directive.
 Safari 6 already supports it but with the *'X-Webkit-CSP'* directive. However, it
 seems the *report_uri* parameter is not yet supported there.
@@ -53,9 +39,8 @@ Features
 ========
 
 * Provides a *csp_report* resource that stores the reported violations.
-* Displays the violation for analysis
+* Displays the violation for analysis along with consolidated reports.
 * Keeps up-to-date with the CSP W3C RFC
-* Future: provide visualization aids on the report data
 
 Why using this gem
 ==================
@@ -71,7 +56,7 @@ that you'll have a hard
 time figuring out all the sources you are using. By recording all the breaches,
  this gem allows you to setup a policy, run a crawler for example, and then 
 look at what is reported as breaches. It will help you getting rid of your 
-inline js and so on.
+inline js and tuning your policy.
 * Second, in normal production mode, it'll help you monitor the situation and 
 see if your server has been victim of some injection (if some input is not 
 sanitize properly) or if your users are being attacked in some way (in which 
@@ -79,6 +64,8 @@ case you might gather stats and maybe warn them in one way or another).
 
 Install
 =======
+
+_(See the [INSTALL.md](./INSTALL.md) file for more details)_
 
 1. In your *Gemfile*, add the following
 ```
@@ -95,8 +82,7 @@ too
 ```shell
 	rails generate csp_report:install [mount_point_name] [-a]
 ```
-It retrieve the db migration files from the gem and copy them in the application  
-It mounts the engine in the application (see routes.rb)  
+Among other things, it retrieves the db migration files from the gem and copy them in the application  
 *Don't forget to run the `rake db:migrate` command*
 
 1. **EASY INSTALL**: if you used the *-a* parameter above, you can skip this
@@ -179,7 +165,6 @@ To come
 
 * Customization instructions
 * Support of CSP 1.1 draft spec
-* Eased data mining
 
 Upgrade notes
 =============
