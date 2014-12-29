@@ -1,22 +1,6 @@
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
-
-guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, 
-  :rspec_env => { 'RAILS_ENV' => 'test' } do
-
-  watch('config/routes.rb')
-  watch('spec/dummy/config/application.rb')
-  watch('spec/dummy/config/environment.rb')
-  watch('spec/dummy/config/environments/test.rb')
-  watch(%r{^spec/dummy/config/initializers/.+\.rb$})
-  watch('Gemfile.lock')
-  watch('spec/spec_helper.rb') { :rspec }
-  watch('test/test_helper.rb') { :test_unit }
-  watch(%r{features/support/}) { :cucumber }
-end
-
-
-guard :rspec, cli: "--drb" do
+guard :rspec, cmd: 'rspec' do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }
