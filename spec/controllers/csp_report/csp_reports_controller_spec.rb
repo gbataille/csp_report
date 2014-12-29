@@ -25,7 +25,7 @@ describe CspReport::CspReportsController do
       it "should return all the reports in store" do
         get :index, use_route: 'csp'
         assert_response(:success)
-        assert_not_nil assigns(:reports)
+        expect(assigns(:reports)).not_to be_nil
         assert_equal assigns(:reports).length, @reports.length
       end
     end

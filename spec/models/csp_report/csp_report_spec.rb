@@ -48,27 +48,27 @@ describe CspReport::CspReport do
   describe "pure model" do
     it "should create a rew report when all the mandatory attributes are provided" do
       report = CspReport::CspReport.new(@unsaved_report)
-      assert_not_nil report
+      expect(report).not_to be_nil
     end
 
     it "should fail to create a report when the document_uri is missing" do
       report = CspReport::CspReport.new(@unsaved_report_wout_document_uri)
-      report.should_not be_valid
+      expect(report).not_to be_valid
     end
 
     it "should fail to create a report when the violated_directive is missing" do
       report = CspReport::CspReport.new(@unsaved_report_wout_violated_directive)
-      report.should_not be_valid
+      expect(report).not_to be_valid
     end
 
     it "should fail to create a report when the original_policy is missing" do
       report = CspReport::CspReport.new(@unsaved_report_wout_original_policy)
-      report.should_not be_valid
+      expect(report).not_to be_valid
     end
 
     it "shoud fail to create a report when the incoming_ip is missing" do
       report = CspReport::CspReport.new(@unsaved_report_wout_incoming_ip)
-      report.should_not be_valid
+      expect(report).not_to be_valid
     end
   end
 
