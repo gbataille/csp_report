@@ -18,13 +18,13 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md", "CHANGELOG"]
   s.test_files = Dir["spec/**/*"]
 
-  s.add_dependency "rails", ">= 4.0.0"
-  s.add_dependency "haml", ">= 4.0.0"
-  s.add_dependency "colorize", ">= 0.5.8"
-  s.add_dependency "jquery-rails", ">= 3.0.4"
-  s.add_dependency "lazy_high_charts", ">= 1.4.3"
-  s.add_dependency "coffee-rails", ">= 4.0.0"
-  s.add_dependency "twitter-bootstrap-rails", ">= 2.2.8"
+  s.add_dependency "rails", "~> 4.0.0"
+  s.add_dependency "haml", "~> 4.0.0"
+  s.add_dependency "colorize", "~> 0.5.8"
+  s.add_dependency "jquery-rails", "~> 3.0.4"
+  s.add_dependency "lazy_high_charts", "~> 1.4.3"
+  s.add_dependency "coffee-rails", "~> 4.0.0"
+  s.add_dependency "twitter-bootstrap-rails", "~> 2.2.8"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "rspec-rails", "~> 2.13.2"

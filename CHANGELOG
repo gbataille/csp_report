@@ -1,6 +1,3 @@
-* From 1.0.0
-	- Lessen the dependency requirements
-
 * From 0.4.0
 	- Follow the upgrade instruction to add the JS hook
 	- Adds charting capabilities for data visualization
